@@ -9,3 +9,6 @@
            .setTransitionName(photo.getTransitionName())
            .info(photo)
            .intent();
+### 截图
+
+![images](https://github.com/Wiser-Wong/PreviewPhoto/blob/master/images/record.gif)
