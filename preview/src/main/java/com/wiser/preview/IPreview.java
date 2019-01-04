@@ -3,6 +3,11 @@ package com.wiser.preview;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
+/**
+ * 预览接口
+ * 
+ * @author Wiser
+ */
 public interface IPreview {
 
 	/**

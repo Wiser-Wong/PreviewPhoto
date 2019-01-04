@@ -1,18 +1,22 @@
 package com.wiser.preview;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.wiser.library.base.WISERActivity;
 import com.wiser.library.base.WISERBuilder;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
- * 图片预览
+ * 图片预览界面
+ * 
+ * @author Wiser
  */
 public class PreviewActivity extends WISERActivity implements View.OnClickListener {
 
@@ -40,21 +44,21 @@ public class PreviewActivity extends WISERActivity implements View.OnClickListen
 				}
 			}
 		}
-		if (photo != null) {
-			photo.setOnClickListener(this);
-		}
 	}
 
 	private ImageView createView() {
-		ImageView photo = new ImageView(this);
+		PhotoView photo = new PhotoView(this);
 		photo.setAdjustViewBounds(true);
 		photo.setScaleType(ImageView.ScaleType.FIT_CENTER);
-		photo.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		params.gravity = Gravity.CENTER;
+		photo.setLayoutParams(params);
+		photo.setOnClickListener(this);
 		return photo;
 	}
 
 	@Override public void onClick(View v) {
-		super.onBackPressed();
+		if (!isFinishing()) super.onBackPressed();
 		Preview.get().detach();
 	}
 }
