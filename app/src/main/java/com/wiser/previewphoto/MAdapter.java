@@ -23,53 +23,47 @@ import com.wiser.preview.PreviewActivity;
 
 import butterknife.BindView;
 
+/**
+ * @author Wiser
+ */
 public class MAdapter extends WISERRVAdapter<PhotoModel, MAdapter.MHolder> {
 
-    public MAdapter(WISERActivity mWiserActivity) {
-        super(mWiserActivity);
-    }
+	public MAdapter(WISERActivity mWiserActivity) {
+		super(mWiserActivity);
+	}
 
-    @Override
-    public MHolder newViewHolder(ViewGroup viewGroup, int i) {
-        return new MHolder(inflate(viewGroup, R.layout.item_photo));
-    }
+	@Override public MHolder newViewHolder(ViewGroup viewGroup, int i) {
+		return new MHolder(inflate(viewGroup, R.layout.item_photo));
+	}
 
-    public class MHolder extends WISERHolder<PhotoModel> {
+	public class MHolder extends WISERHolder<PhotoModel> {
 
-        @BindView(R.id.iv_photo)
-        ImageView photo;
+		@BindView(R.id.iv_photo) ImageView photo;
 
-        MHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+		MHolder(@NonNull View itemView) {
+			super(itemView);
+		}
 
-        @Override
-        public void bindData(final PhotoModel photoModel, final int i) {
+		@Override public void bindData(final PhotoModel photoModel, final int i) {
 
-            Glide.with(activity()).load(photoModel.photoUrl).asBitmap().into(new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    PhotoModel photoModel1 = (PhotoModel) getItem(i);
-                    photoModel1.photoBitmap = resource;
-                    getItems().set(i, photoModel1);
-                    photo.setImageBitmap(resource);
-                }
-            });
+			Glide.with(activity()).load(photoModel.photoUrl).asBitmap().into(new SimpleTarget<Bitmap>() {
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void onClick(View v) {
-                    Preview.with(activity())
-                            .bitmap(((PhotoModel) getItem(i)).photoBitmap)
-                            .defaultPhoto(R.mipmap.ic_launcher)
-                            .photoId(R.id.iv_photo)
-                            .setTransitionName(photo.getTransitionName())
-                            .info(photo)
-                            .intent();
-                }
-            });
-        }
-    }
+				@Override public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+					PhotoModel photoModel1 = (PhotoModel) getItem(i);
+					photoModel1.photoBitmap = resource;
+					getItems().set(i, photoModel1);
+					photo.setImageBitmap(resource);
+				}
+			});
+
+			itemView.setOnClickListener(new View.OnClickListener() {
+
+				@TargetApi(Build.VERSION_CODES.LOLLIPOP) @Override public void onClick(View v) {
+					Preview.with(activity()).bitmap(((PhotoModel) getItem(i)).photoBitmap).defaultPhoto(R.mipmap.ic_launcher).photoId(R.id.iv_photo).setTransitionName(photo.getTransitionName())
+							.info(photo).intent();
+				}
+			});
+		}
+	}
 
 }

@@ -1,14 +1,16 @@
 package com.wiser.previewphoto;
 
-import android.app.Application;
-
 import com.wiser.library.helper.WISERHelper;
 
+import android.app.Application;
+
+/**
+ * @author Wiser
+ */
 public class MApplication extends Application {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        WISERHelper.newBind().Inject(this, BuildConfig.DEBUG);
-    }
+	@Override public void onCreate() {
+		super.onCreate();
+		WISERHelper.newBind().Inject(this, BuildConfig.DEBUG);
+	}
 }
