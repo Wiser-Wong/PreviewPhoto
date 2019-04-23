@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 
 /**
  * 图片预览界面
- * 
+ *
  * @author Wiser
  */
 public class PreviewActivity extends WISERActivity implements View.OnClickListener {
